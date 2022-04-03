@@ -6,4 +6,10 @@
     body{
         font-family:'Poppins' !important;
     }
+    .bg-\[url\(\'\.\.\/images\/dash1\.png\'\)\]{
+        background-size: 55% 100% !important;
+    }
+    .bg-\[url\(\'\.\.\/images\/dash2\.png\'\)\]{
+        background-size: 55% 100% !important;
+    }
 }

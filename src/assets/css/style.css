@@ -474,33 +474,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1440px) {
   .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
+    max-width: 1440px;
   }
 }
 
@@ -541,8 +517,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.75rem;
 }
 
+.-mt-40 {
+  margin-top: -10rem;
+}
+
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
 .mr-2 {
@@ -561,12 +545,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.5rem;
 }
 
-.mt-40 {
-  margin-top: 10rem;
+.-mt-10 {
+  margin-top: -2.5rem;
 }
 
-.-mt-40 {
-  margin-top: -10rem;
+.ml-10 {
+  margin-left: 2.5rem;
+}
+
+.ml-16 {
+  margin-left: 4rem;
 }
 
 .flex {
@@ -577,22 +565,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: grid;
 }
 
-.hidden {
-  display: none;
-}
-
 .h-16 {
   height: 4rem;
 }
 
 .h-12 {
   height: 3rem;
-}
-
-.h-fit {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
 }
 
 .max-h-32 {
@@ -607,12 +585,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 3rem;
 }
 
-.w-full {
-  width: 100%;
+.w-4\/5 {
+  width: 80%;
 }
 
-.w-1\/2 {
-  width: 50%;
+.w-full {
+  width: 100%;
 }
 
 .w-fit {
@@ -621,16 +599,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: fit-content;
 }
 
-.w-1 {
-  width: 0.25rem;
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-8\/12 {
+  width: 66.666667%;
 }
 
 .w-2\/3 {
   width: 66.666667%;
 }
 
-.w-4\/5 {
-  width: 80%;
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-4\/6 {
+  width: 66.666667%;
+}
+
+.w-3\/6 {
+  width: 50%;
+}
+
+.w-6\/12 {
+  width: 50%;
 }
 
 .flex-none {
@@ -665,6 +659,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-wrap: nowrap;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -689,6 +687,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 0.5rem;
 }
 
+.gap-6 {
+  gap: 1.5rem;
+}
+
 .gap-5 {
   gap: 1.25rem;
 }
@@ -705,16 +707,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 0.75rem;
 }
 
-.gap-6 {
-  gap: 1.5rem;
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.gap-24 {
+  gap: 6rem;
 }
 
 .overflow-hidden {
   overflow: hidden;
-}
-
-.overflow-visible {
-  overflow: visible;
 }
 
 .overflow-x-scroll {
@@ -829,11 +831,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(45 212 191 / var(--tw-bg-opacity));
 }
 
-.bg-red-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
-}
-
 .bg-\[url\(\'\.\.\/images\/indexsectiononeback\.png\'\)\] {
   background-image: url('../images/indexsectiononeback.png');
 }
@@ -842,8 +839,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: url('../images/indexsectionTwoR2back.png');
 }
 
+.bg-\[url\(\'\.\.\/images\/dash1\.png\'\)\] {
+  background-image: url('../images/dash1.png');
+}
+
 .bg-\[url\(\'\.\.\/images\/indexsectionThreeR3back\.png\'\)\] {
   background-image: url('../images/indexsectionThreeR3back.png');
+}
+
+.bg-\[url\(\'\.\.\/images\/dash2\.png\'\)\] {
+  background-image: url('../images/dash2.png');
 }
 
 .bg-\[url\(\'\.\.\/images\/indexsectionFourR4back\.png\'\)\] {
@@ -858,68 +863,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: url('../images/Group6.png');
 }
 
-.bg-\[url\(\'\.\.\/images\/dash\.png\'\)\] {
-  background-image: url('../images/dash.png');
-}
-
-.bg-\[url\(\'\.\.\/images\/Group3330\.png\'\)\] {
-  background-image: url('../images/Group3330.png');
-}
-
-.bg-\[url\(\'\.\.\/images\/indexsectionThreeR3back\.pn\'\)\] {
-  background-image: url('../images/indexsectionThreeR3back.pn');
-}
-
-.bg-\[url\(\'\.\.\/images\/indexsectionFourR4back\.pn\'\)\] {
-  background-image: url('../images/indexsectionFourR4back.pn');
-}
-
-.bg-\[url\(\'\.\.\/images\/indexsectionFourR4back\'\)\] {
-  background-image: url('../images/indexsectionFourR4back');
-}
-
-.bg-\[url\(\'\.\.\/images\/indexsectionThreeR3back\'\)\] {
-  background-image: url('../images/indexsectionThreeR3back');
-}
-
-.bg-\[url\(\'\.\.\/images\/indexsectionTwoR2back\'\)\] {
-  background-image: url('../images/indexsectionTwoR2back');
-}
-
-.bg-\[url\(\'\.\.\/images\/Group3330\'\)\] {
-  background-image: url('../images/Group3330');
-}
-
-.bg-\[url\(\'\.\.\/images\/d\'\)\] {
-  background-image: url('../images/d');
-}
-
-.bg-\[url\(\'\.\.\/images\/da\'\)\] {
-  background-image: url('../images/da');
-}
-
-.bg-\[url\(\'\.\.\/images\/\'\)\] {
-  background-image: url('../images/');
-}
-
-.bg-\[url\(\'\.\.\/images\/container\'\)\] {
-  background-image: url('../images/container');
-}
-
-.bg-\[url\(\'\.\.\/images\/dash1\.png\'\)\] {
-  background-image: url('../images/dash1.png');
-}
-
-.bg-\[url\(\'\.\.\/images\/dash2\.png\'\)\] {
-  background-image: url('../images/dash2.png');
-}
-
-.bg-\[url\(\'\.\.\/images\/dash2\.pngindexsectionThreeR3back\.png\'\)\] {
-  background-image: url('../images/dash2.pngindexsectionThreeR3back.png');
-}
-
-.bg-\[url\(\'\.\.\/images\/dash1\.pngindexsectionTwoR2back\.png\'\)\] {
-  background-image: url('../images/dash1.pngindexsectionTwoR2back.png');
+.bg-\[url\(\'\.\.\/images\/star\.png\'\)\] {
+  background-image: url('../images/star.png');
 }
 
 .bg-cover {
@@ -930,20 +875,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-size: contain;
 }
 
-.bg-auto {
-  background-size: auto;
-}
-
 .bg-right {
   background-position: right;
 }
 
 .bg-left {
   background-position: left;
-}
-
-.bg-center {
-  background-position: center;
 }
 
 .bg-no-repeat {
@@ -968,10 +905,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-5 {
   padding: 1.25rem;
-}
-
-.p-32 {
-  padding: 8rem;
 }
 
 .px-3 {
@@ -1034,40 +967,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
-.pb-5 {
-  padding-bottom: 1.25rem;
+.py-52 {
+  padding-top: 13rem;
+  padding-bottom: 13rem;
 }
 
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
-.pb-20 {
-  padding-bottom: 5rem;
-}
-
-.pb-3 {
-  padding-bottom: 0.75rem;
-}
-
-.pb-36 {
-  padding-bottom: 9rem;
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
 
 .pb-32 {
   padding-bottom: 8rem;
 }
 
-.pb-40 {
-  padding-bottom: 10rem;
-}
-
-.pb-6 {
-  padding-bottom: 1.5rem;
-}
-
-.pb-64 {
-  padding-bottom: 16rem;
+.pb-20 {
+  padding-bottom: 5rem;
 }
 
 .text-center {
@@ -1130,8 +1045,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 500;
 }
 
-.leading-5 {
-  line-height: 1.25rem;
+.leading-loose {
+  line-height: 2;
 }
 
 .text-sky-500 {
@@ -1174,6 +1089,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 @layer{
   body{
     font-family:'Poppins' !important;
+  }
+
+  .bg-\[url\(\'\.\.\/images\/dash1\.png\'\)\]{
+    background-size: 55% 100% !important;
+  }
+
+  .bg-\[url\(\'\.\.\/images\/dash2\.png\'\)\]{
+    background-size: 55% 100% !important;
   }
 }
 
@@ -1273,24 +1196,28 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 20rem;
   }
 
-  .xl\:px-24 {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-
-  .xl\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
   .xl\:px-5 {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
 
-  .xl\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
+  .xl\:px-24 {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+
+  .xl\:px-16 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .xl\:py-5 {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .xl\:text-4\/5xl {
+    font-size: 2.5rem;
   }
 
   .xl\:text-xl {
@@ -1303,9 +1230,9 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 2.5rem;
   }
 
-  .xl\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
+  .xl\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 
   .xl\:text-3xl {
@@ -1313,12 +1240,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 2.25rem;
   }
 
-  .xl\:leading-5 {
-    line-height: 1.25rem;
-  }
-
-  .xl\:leading-loose {
-    line-height: 2;
+  .xl\:leading-tight {
+    line-height: 1.25;
   }
 
   .xl\:leading-relaxed {
