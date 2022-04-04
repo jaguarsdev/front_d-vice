@@ -504,6 +504,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: -100%;
 }
 
+.right-0 {
+  right: 0px;
+}
+
+.top-32 {
+  top: 8rem;
+}
+
+.top-52 {
+  top: 13rem;
+}
+
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -577,6 +589,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.5rem;
 }
 
+.-mt-52 {
+  margin-top: -13rem;
+}
+
+.-mt-32 {
+  margin-top: -8rem;
+}
+
+.-mt-16 {
+  margin-top: -4rem;
+}
+
 .flex {
   display: flex;
 }
@@ -591,6 +615,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-12 {
   height: 3rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .max-h-32 {
@@ -631,12 +659,28 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 50%;
 }
 
+.w-\[500px\] {
+  width: 500px;
+}
+
+.w-\[800px\] {
+  width: 800px;
+}
+
+.w-\[900px\] {
+  width: 900px;
+}
+
 .flex-none {
   flex: none;
 }
 
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.resize {
+  resize: both;
 }
 
 .grid-cols-1 {
@@ -907,6 +951,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1.25rem;
 }
 
+.p-6 {
+  padding: 1.5rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -983,6 +1031,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-20 {
   padding-bottom: 5rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .text-center {
@@ -1183,8 +1235,66 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 1280px) {
+  .xl\:order-2 {
+    order: 2;
+  }
+
+  .xl\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .xl\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
+  .xl\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
   .xl\:mt-7 {
     margin-top: 1.75rem;
+  }
+
+  .xl\:grid {
+    display: grid;
+  }
+
+  .xl\:h-full {
+    height: 100%;
+  }
+
+  .xl\:h-56 {
+    height: 14rem;
+  }
+
+  .xl\:w-fit {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
+  .xl\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .xl\:gap-7 {
+    gap: 1.75rem;
+  }
+
+  .xl\:p-7 {
+    padding: 1.75rem;
   }
 
   .xl\:px-11 {
@@ -1222,6 +1332,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 1.25rem;
   }
 
+  .xl\:pt-20 {
+    padding-top: 5rem;
+  }
+
+  .xl\:pb-32 {
+    padding-bottom: 8rem;
+  }
+
   .xl\:text-4\/5xl {
     font-size: 2.5rem;
   }
@@ -1246,12 +1364,46 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 2.25rem;
   }
 
+  .xl\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .xl\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .xl\:font-medium {
+    font-weight: 500;
+  }
+
+  .xl\:font-semibold {
+    font-weight: 600;
+  }
+
+  .xl\:font-bold {
+    font-weight: 700;
+  }
+
+  .xl\:font-normal {
+    font-weight: 400;
+  }
+
   .xl\:leading-tight {
     line-height: 1.25;
   }
 
   .xl\:leading-relaxed {
     line-height: 1.625;
+  }
+
+  .xl\:leading-normal {
+    line-height: 1.5;
+  }
+
+  .xl\:leading-snug {
+    line-height: 1.375;
   }
 }
 
