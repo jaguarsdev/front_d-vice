@@ -88,7 +88,7 @@
     <!-- ------------------------- -->
     <main>
         <!-- ------------------------- -->
-        <section id="sectionOne" class="bg-[url('../images/Group6.png')] bg-cover xl:pt-20 xl:pb-32">
+        <section id="sectionOne" class="bg-[url('../images/Group6.png')] bg-cover md:pt-20 md:pb-32">
             <div class="flex flex-col gap-5 container px-3">
                 <p class="text-white xl:text-xl">Having trouble with;</p>
                 <h2 class="text-white text-3xl xl:text-5xl xl:leading-snug font-bold">Building JS<br>
@@ -104,13 +104,13 @@
                     <!-- ------------------------- -->
                     <div class="swiper-slide">
                 <!-- ------------------------- -->
-                    <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
+                    <div id="boxCont" class="bg-white grid grid-cols-7 md:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
                         <!-- ------------------------- -->
-                        <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
+                        <div id="boxImg" class="col-span-3 order-2 h-full rounded-xl overflow-hidden">
                             <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
                         </div>
                         <!-- ------------------------- -->
-                        <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1 text-left">
+                        <div id="boxText" class="col-span-4 flex flex-col justify-between gap-1 text-left">
                             <div id="categor" class="text-teal-400">Intermediate</div>
                             <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
                             <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
@@ -135,13 +135,13 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- ------------------------- -->
-                            <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
+                            <div id="boxCont" class="bg-white grid grid-cols-7 md:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
                                 <!-- ------------------------- -->
-                                <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
+                                <div id="boxImg" class="col-span-3 order-2 h-full rounded-xl overflow-hidden">
                                     <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
                                 </div>
                                 <!-- ------------------------- -->
-                                <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1 text-left">
+                                <div id="boxText" class="col-span-4 flex flex-col justify-between gap-1 text-left">
                                     <div id="categor" class="text-teal-400">Intermediate</div>
                                     <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
                                     <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
@@ -166,13 +166,13 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- ------------------------- -->
-                            <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
+                            <div id="boxCont" class="bg-white grid grid-cols-7 md:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
                                 <!-- ------------------------- -->
-                                <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
+                                <div id="boxImg" class="col-span-3 order-2 h-full rounded-xl overflow-hidden">
                                     <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
                                 </div>
                                 <!-- ------------------------- -->
-                                <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1 text-left">
+                                <div id="boxText" class="col-span-4 flex flex-col justify-between gap-1 text-left">
                                     <div id="categor" class="text-teal-400">Intermediate</div>
                                     <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
                                     <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
@@ -197,13 +197,13 @@
                     </div>
                     <div class="swiper-slide">
                             <!-- ------------------------- -->
-                                <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
+                                <div id="boxCont" class="bg-white grid grid-cols-7 md:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
                                     <!-- ------------------------- -->
-                                    <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
+                                    <div id="boxImg" class="col-span-3 order-2 h-full rounded-xl overflow-hidden">
                                         <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
                                     </div>
                                     <!-- ------------------------- -->
-                                    <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1 text-left">
+                                    <div id="boxText" class="col-span-4 flex flex-col justify-between gap-1 text-left">
                                         <div id="categor" class="text-teal-400">Intermediate</div>
                                         <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
                                         <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
@@ -233,13 +233,27 @@
               <!-- ------------------------- -->
               <script>
                 var swiper = new Swiper('#t1slide', {
-                  slidesPerView: 2.5,
-                  spaceBetween: 30,
+                //   slidesPerView: 2.5,
+                //   spaceBetween: 30,
                   direction: getDirection(),
                   navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                   },
+                  breakpoints: {
+                            640: {
+                                slidesPerView: 1,
+                                spaceBetween: 30,
+                            },
+                            768: {
+                                slidesPerView: 1.5,
+                                spaceBetween: 30,
+                            },
+                            1280: {
+                                slidesPerView: 2.5,
+                                spaceBetween: 30,
+                            },
+                            },
                   on: {
                     resize: function () {
                       swiper.changeDirection(getDirection());
