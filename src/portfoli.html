@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
-    <script src="./assets/js/swiper-bundle.min.js" ></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
     <title>portfol</title>
     <style>
         .swiper {
@@ -231,43 +231,7 @@
                 <div class="swiper-pagination"></div>
             </div>
               <!-- ------------------------- -->
-              <script>
-                var swiper = new Swiper('#t1slide', {
-                //   slidesPerView: 2.5,
-                //   spaceBetween: 30,
-                  direction: getDirection(),
-                  navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                  },
-                  breakpoints: {
-                            640: {
-                                slidesPerView: 1,
-                                spaceBetween: 30,
-                            },
-                            768: {
-                                slidesPerView: 1.5,
-                                spaceBetween: 30,
-                            },
-                            1280: {
-                                slidesPerView: 2.5,
-                                spaceBetween: 30,
-                            },
-                            },
-                  on: {
-                    resize: function () {
-                      swiper.changeDirection(getDirection());
-                    },
-                  },
-                });
-          
-                function getDirection() {
-                  var windowWidth = window.innerWidth;
-                  var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-          
-                  return direction;
-                }
-              </script>
+              
 
         
             <!-- ------------------------- -->
@@ -343,41 +307,7 @@
                     </div>
                 </ul>
                 <!-- ------------------------- -->
-                    <script>
-                        var swiper = new Swiper('#t3slide', {
-                        direction: getDirection(),
-                        navigation: {
-                            nextEl: '.swiper-button-next',
-                            prevEl: '.swiper-button-prev',
-                        },
-                        breakpoints: {
-                            640: {
-                                slidesPerView: 3,
-                                spaceBetween: 20,
-                            },
-                            768: {
-                                slidesPerView: 6,
-                                spaceBetween: 40,
-                            },
-                            1024: {
-                                slidesPerView: 8,
-                                spaceBetween: 50,
-                            },
-                            },
-                        on: {
-                            resize: function () {
-                            swiper.changeDirection(getDirection());
-                            },
-                        },
-                        });
-                
-                        function getDirection() {
-                        var windowWidth = window.innerWidth;
-                        var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-                
-                        return direction;
-                        }
-                    </script>
+                    
                 </div>
                 <div id="gridProduct" class="grid grid-cols-2 xl:grid-cols-3 xl:gap-7 gap-3 pb-10">
                     <!-- ------------------------- -->
@@ -594,5 +524,76 @@
             </div>
         </section>
     </footer>
+    <script src="./assets/js/swiper-bundle.min.js" ></script>
+    <script>
+        var swiper = new Swiper('#t1slide', {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 30,
+                    },
+                    1280: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 30,
+                    },
+                    },
+          on: {
+            resize: function () {
+              swiper.changeDirection(getDirection());
+            },
+          },
+        });
+  
+        function getDirection() {
+          var windowWidth = window.innerWidth;
+          var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+  
+          return direction;
+        }
+      </script>
+      <script>
+        var swiper = new Swiper('#t3slide', {
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 6,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 8,
+                spaceBetween: 50,
+            },
+            },
+        on: {
+            resize: function () {
+            swiper.changeDirection(getDirection());
+            },
+        },
+        });
+
+        function getDirection() {
+        var windowWidth = window.innerWidth;
+        var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+
+        return direction;
+        }
+    </script>
 </body>
 </html>
