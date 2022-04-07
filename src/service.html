@@ -310,18 +310,28 @@
               <!-- ------------------------- -->
               <script>
                 var swiper = new Swiper('#t2slide', {
-                  slidesPerView: 4.5,
+                  slidesPerView: 1.5,
                   spaceBetween: 60,
-                  direction: getDirection(),
+                //   direction: getDirection(),
                   navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                   },
-                  on: {
-                    resize: function () {
-                      swiper.changeDirection(getDirection());
+                  breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
                     },
-                  },
+                    768: {
+                        slidesPerView: 6,
+                        spaceBetween: 40,
+                    },
+                    1024: {
+                        slidesPerView: 8,
+                        spaceBetween: 50,
+                    },
+                    },
+                  
                 });
           
                 function getDirection() {
@@ -330,7 +340,7 @@
           
                   return direction;
                 }
-              </script>
+            </script>
             
         </section>
     
@@ -355,7 +365,7 @@
             </div>
         </section>
         <!-- ------------------------- -->
-        <section class="container grid grid-cols-1 md:grid-cols-4 gap-24 py-32">
+        <section class="container px-3 grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-24 py-10 md:py-32">
             <div id="colOne" class="flex flex-col gap-5">
                 <img src="./assets/images/logo_black_2_.png" class="w-fit" alt="">
                 <p>
@@ -379,7 +389,7 @@
                 </p>
                 <p>+908 89097 890</p>
             </div>
-            <div id="colFour" class="flex items-end">
+            <div id="colFour" class="flex items-end justify-center">
                 <div class="grid grid-cols-4">
                     <img src="./assets/images/facebook 1.png" class="p-4 shadow-xl rounded-full" alt="">
                     <img src="./assets/images/instagram 1.png" class="p-4 shadow-xl rounded-full" alt="">
