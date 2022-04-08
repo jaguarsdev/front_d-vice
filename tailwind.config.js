@@ -11,6 +11,10 @@ module.exports = {
         screens: {
           '2xl': '1440px',
         },
+        padding: {
+          DEFAULT: '2rem',
+          '2xl': '3rem',
+        },
       },
     },
   },

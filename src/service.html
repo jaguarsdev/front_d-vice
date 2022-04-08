@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
     <script src="./assets/js/swiper-bundle.min.js" ></script>
+    <script src="./assets/js/cdn.min.js" ></script>
     <title>servic</title>
     <style>
         .swiper {
@@ -59,24 +60,86 @@
 <body>
     <!-- ------------------------- -->
     <header>
-        <div class="container flex justify-between items-center md:py-2">
+        <div class="container flex justify-between items-center md:py-2" x-data="{ open: false }">
             <div id="left"><svg class=" w-3/5 md:w-full ml-3" width="35" height="68" viewBox="0 0 35 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M25.057 23.7003V38.7677L34.4891 33.3231V39.583L19.6194 48.1576V14.3104L34.4891 22.885V29.1449L25.057 23.7003ZM25.057 47.7354L19.6194 50.8653V68L34.4891 59.4254V53.1655L25.057 58.6101V47.7354ZM2.51924 21.4584L14.9252 14.3104V36.8897L0.055542 45.4644V25.7093C0.055542 23.9623 1.00312 22.3318 2.51924 21.4584ZM5.49319 36.0599L9.48759 33.7598V23.7148L7.38834 24.9231C6.20751 25.6074 5.47861 26.8593 5.47861 28.2132V36.0599H5.49319ZM9.48759 58.5374L5.49319 56.2227V44.9403L0.055542 48.0702V59.3526L14.9252 67.9272V39.4956L9.48759 42.6256V58.5374ZM17.2723 0L11.6597 5.6048L15.6979 9.63734L17.2723 11.195L18.8467 9.62278L22.8849 5.59024L17.2723 0Z" fill="#161616"/>
                 </svg>
             </div>
-            <div id="right" class="md:hidden font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 m-3" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd" />
-                  </svg>
+            <div id="right" class="md:hidden font-medium" >
+                <div class="flex justify-center">
+                    <div
+                        x-data="{
+                            open: false,
+                            toggle() {
+                                if (this.open) {
+                                    return this.close()
+                                }
+                
+                                this.$refs.button.focus()
+                
+                                this.open = true
+                            },
+                            close(focusAfter) {
+                                if (! this.open) return
+                
+                                this.open = false
+                
+                                focusAfter && focusAfter.focus()
+                            }
+                        }"
+                        x-on:keydown.escape.prevent.stop="close($refs.button)"
+                        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                        x-id="['dropdown-button']"
+                        class="relative"
+                    >
+                        <!-- Button -->
+                        <button
+                            x-ref="button"
+                            x-on:click="toggle()"
+                            :aria-expanded="open"
+                            :aria-controls="$id('dropdown-button')"
+                            type="button"
+                            class="border border-gray-400 rounded shadow m-1"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-7 w-7 m-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                              </svg>
+                        </button>
+                
+                        <!-- Panel -->
+                        <div
+                            x-ref="panel"
+                            x-show="open"
+                            x-transition.origin.top.left
+                            x-on:click.outside="close($refs.button)"
+                            :id="$id('dropdown-button')"
+                            style="display: none;"
+                            class="absolute right-3 mt-2 w-36 bg-white border border-gray-300 rounded shadow-md overflow-hidden"
+                        >
+                        
+                            <nav>
+                                <ul class="flex flex-col gap-4 p-3">
+                                    <li><a href="./index.html">Home</a></li>
+                                    <li><a href="./portfoli.html">Portfolio</a></li>
+                                    <!-- <li><a href="./about.html">About us</a></li> -->
+                                    <li><a href="./service.html">Services</a></li>
+                                    <!-- <li><a href="./blog.html">Blog</a></li> -->
+                                </ul>
+                            </nav>
+                
+                        </div>
+                    </div>
+                </div>
+                  
             </div>
-            <div id="right" class="hidden md:flex gap-16 font-medium">
+            <div id="right" class="hidden md:flex gap-16 font-medium" x-bind:class="open: true ? '' : ''">
                 <nav>
                     <ul class="flex gap-16">
                         <li><a href="./index.html">Home</a></li>
                         <li><a href="./portfoli.html">Portfolio</a></li>
-                        <li><a href="./about.html">About us</a></li>
+                        <!-- <li><a href="./about.html">About us</a></li> -->
                         <li><a href="./service.html">Services</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <!-- <li><a href="./blog.html">Blog</a></li> -->
                     </ul>
                 </nav>
                 <div class="">
@@ -89,18 +152,18 @@
     <main class="">
         <!-- ------------------------- -->
         <section id="sectionOne" class="bg-sky-50 text-center pt-28 pb-80">
-            <div class="container px-3">
+            <div class="container">
                 <img src="./assets/images/Group91.png" class="m-auto" alt="">
                 <h2 class="font-semibold text-2xl xl:text-4xl mt-2">Our <span class="text-sky-500">Services</span></h2>
-                <p class="mt-2 xl:text-xl pt-7 w-2/5 m-auto text-gray-500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                <p class="mt-2 xl:text-xl pt-7 w-4/5 md:w-2/5 m-auto text-gray-500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
             </div>
         </section>
         <!-- ------------------------- -->
         <section id="sectionTwo" class="-mt-60 xl:mb-32">
-            <div class="shadow-2xl bg-white w-4/6 m-auto rounded-xl bg-[url('../images/Group134.png')] bg-no-repeat bg-contain bg-center">
-                <div id="seviceBox" class="p-9 grid grid-cols-2 gap-10">
+            <div class="shadow-2xl bg-white w-11/12 md:w-4/6 m-auto rounded-xl bg-[url('../images/Group134.png')] bg-no-repeat bg-contain bg-center">
+                <div id="seviceBox" class="p-1 md:p-9 grid grid-cols-1 md:grid-cols-2 gap-10">
                     <!-- ------------------------- -->
-                    <div id="col1" class="items-center p-7 col-span-1 flex">
+                    <div id="col1" class="items-center p-1 md:p-7 col-span-1 flex">
                         <div id="left" class="bg-violet-50 w-16 h-16 xl:w-20 xl:h-20 flex items-center justify-center rounded-lg">
                             <svg class="w-36 h-36" viewBox="0 0 91 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect class="w-full h-full" rx="20" fill="#F1E8FF"/>
@@ -119,7 +182,7 @@
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="col2" class="items-center p-7 col-span-1 flex">
+                    <div id="col2" class="items-center p-1 md:p-7 col-span-1 flex">
                         <div id="left" class="bg-lime-50 w-16 h-16 xl:w-20 xl:h-20 flex items-center justify-center rounded-lg">
                             <svg class="w-36 h-36" viewBox="0 0 91 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect class="w-full h-full" rx="20" fill="#FFF2F2"/>
@@ -138,7 +201,7 @@
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="col3" class="items-center p-7 col-span-1 flex">
+                    <div id="col3" class="items-center p-1 md:p-7 col-span-1 flex">
                         <div id="left" class="bg-blue-50 w-16 h-16 xl:w-20 xl:h-20 flex items-center justify-center rounded-lg">
                             <svg class="w-36 h-36" viewBox="0 0 91 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect class="w-full h-full" rx="20" fill="#E2F3FF"/>
@@ -168,7 +231,7 @@
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="col4" class="items-center p-7 col-span-1 flex">
+                    <div id="col4" class="items-center p-1 md:p-7 col-span-1 flex">
                         <div id="left" class="bg-orange-50 w-16 h-16 xl:w-20 xl:h-20 flex items-center justify-center rounded-lg">
                             <svg class="w-36 h-36" viewBox="0 0 91 90" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect class="w-full h-full" rx="20" fill="#FFE7FB"/>
@@ -201,7 +264,7 @@
         </section>
         <!-- ------------------------- -->
         <section id="sectionThree" class="py-12 mb-16">
-            <div class="container px-3">
+            <div class="container">
                 <!-- ------------------------- -->
                 <div id="row" class="xl:grid xl:grid-cols-5">
                     <!-- ------------------------- -->
@@ -228,21 +291,21 @@
         </section>
         <!-- ------------------------- -->
         <section id="sectionFour" class="bg-sky-500 text-white">
-            <div class="container px-3 grid grid-cols-2 xl:grid grid-cols-4 gap-3 xl:py-40">
+            <div class="container grid grid-cols-2 xl:grid-cols-4 md:gap-3 gap-10 py-20 xl:py-40">
                 <div id="number" class="flex flex-col text-center">
-                    <span class="text-6xl font-semibold">6</span>
+                    <span class="text-4xl md:text-6xl font-semibold">6</span>
                     <span class="text-base">Happy Clients</span>
                 </div>
                 <div id="number" class="flex flex-col text-center">
-                    <span class="text-6xl font-semibold">11</span>
+                    <span class="text-4xl md:text-6xl font-semibold">11</span>
                     <span class="text-base">Completed Projects</span>
                 </div>
                 <div id="number" class="flex flex-col text-center">
-                    <span class="text-6xl font-semibold">7M</span>
+                    <span class="text-4xl md:text-6xl font-semibold">7M</span>
                     <span class="text-base">Transsactions</span>
                 </div>
                 <div id="number" class="flex flex-col text-center">
-                    <span class="text-6xl font-semibold">6000+</span>
+                    <span class="text-4xl md:text-6xl font-semibold">6000+</span>
                     <span class="text-base">Customers</span>
                 </div>
             </div>
@@ -323,23 +386,18 @@
                         spaceBetween: 20,
                     },
                     768: {
-                        slidesPerView: 6,
+                        slidesPerView: 3,
                         spaceBetween: 40,
                     },
                     1024: {
-                        slidesPerView: 8,
+                        slidesPerView: 4,
                         spaceBetween: 50,
                     },
                     },
                   
                 });
           
-                function getDirection() {
-                  var windowWidth = window.innerWidth;
-                  var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-          
-                  return direction;
-                }
+                
             </script>
             
         </section>
@@ -350,7 +408,7 @@
         <!-- ------------------------- -->
         <section id="sectionSix" class="bg-sky-100 pb-20">
             <!-- ------------------------- -->
-            <div id="container" class="container px-3">
+            <div id="container" class="container">
                 <!-- ------------------------- -->
                 <img src="./assets/images/star.png" class="md:-mt-10 md:ml-16" alt="">
                 <!-- ------------------------- -->
@@ -365,7 +423,7 @@
             </div>
         </section>
         <!-- ------------------------- -->
-        <section class="container px-3 grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-24 py-10 md:py-32">
+        <section class="container grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-24 py-10 md:py-32">
             <div id="colOne" class="flex flex-col gap-5">
                 <img src="./assets/images/logo_black_2_.png" class="w-fit" alt="">
                 <p>
