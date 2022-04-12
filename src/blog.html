@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/fonts/fonts.css">
     <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
-    <script src="./assets/js/swiper-bundle.min.js" ></script>
-    <title>blog</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/cdn.min.js" ></script>
+    
+    <title>portfol</title>
     <style>
         .swiper {
           width: 100%;
@@ -59,19 +60,86 @@
 <body>
      <!-- ------------------------- -->
      <header>
-        <div class="container flex justify-between items-center py-2">
-            <div id="left"><svg width="35" height="68" viewBox="0 0 35 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="container flex justify-between items-center md:py-2" x-data="{ open: false }">
+            <div id="left"><svg class=" w-3/5 md:w-full ml-3" width="35" height="68" viewBox="0 0 35 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M25.057 23.7003V38.7677L34.4891 33.3231V39.583L19.6194 48.1576V14.3104L34.4891 22.885V29.1449L25.057 23.7003ZM25.057 47.7354L19.6194 50.8653V68L34.4891 59.4254V53.1655L25.057 58.6101V47.7354ZM2.51924 21.4584L14.9252 14.3104V36.8897L0.055542 45.4644V25.7093C0.055542 23.9623 1.00312 22.3318 2.51924 21.4584ZM5.49319 36.0599L9.48759 33.7598V23.7148L7.38834 24.9231C6.20751 25.6074 5.47861 26.8593 5.47861 28.2132V36.0599H5.49319ZM9.48759 58.5374L5.49319 56.2227V44.9403L0.055542 48.0702V59.3526L14.9252 67.9272V39.4956L9.48759 42.6256V58.5374ZM17.2723 0L11.6597 5.6048L15.6979 9.63734L17.2723 11.195L18.8467 9.62278L22.8849 5.59024L17.2723 0Z" fill="#161616"/>
                 </svg>
+            </div>
+            <div id="right" class="md:hidden font-medium" >
+                <div class="flex justify-center">
+                    <div
+                        x-data="{
+                            open: false,
+                            toggle() {
+                                if (this.open) {
+                                    return this.close()
+                                }
+                
+                                this.$refs.button.focus()
+                
+                                this.open = true
+                            },
+                            close(focusAfter) {
+                                if (! this.open) return
+                
+                                this.open = false
+                
+                                focusAfter && focusAfter.focus()
+                            }
+                        }"
+                        x-on:keydown.escape.prevent.stop="close($refs.button)"
+                        x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+                        x-id="['dropdown-button']"
+                        class="relative"
+                    >
+                        <!-- Button -->
+                        <button
+                            x-ref="button"
+                            x-on:click="toggle()"
+                            :aria-expanded="open"
+                            :aria-controls="$id('dropdown-button')"
+                            type="button"
+                            class="border border-gray-400 rounded shadow m-1"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-7 w-7 m-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                              </svg>
+                        </button>
+                
+                        <!-- Panel -->
+                        <div
+                            x-ref="panel"
+                            x-show="open"
+                            x-transition.origin.top.left
+                            x-on:click.outside="close($refs.button)"
+                            :id="$id('dropdown-button')"
+                            style="display: none;"
+                            class="absolute right-3 mt-2 w-36 bg-white border border-gray-300 rounded shadow-md overflow-hidden"
+                        >
+                        
+                            <nav>
+                                <ul class="flex flex-col gap-4 p-3">
+                                    <li><a href="./index.html">Home</a></li>
+                                    <li><a href="./portfoli.html">Portfolio</a></li>
+                                    <!-- <li><a href="./about.html">About us</a></li> -->
+                                    <li><a href="./service.html">Services</a></li>
+                                    <!-- <li><a href="./blog.html">Blog</a></li> -->
+                                </ul>
+                            </nav>
+                
+                        </div>
+                    </div>
                 </div>
-            <div id="right" class="flex gap-16 font-medium">
+                  
+            </div>
+            <div id="right" class="hidden md:flex gap-16 font-medium" x-bind:class="open: true ? '' : ''">
                 <nav>
                     <ul class="flex gap-16">
                         <li><a href="./index.html">Home</a></li>
                         <li><a href="./portfoli.html">Portfolio</a></li>
-                        <li><a href="./about.html">About us</a></li>
+                        <!-- <li><a href="./about.html">About us</a></li> -->
                         <li><a href="./service.html">Services</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <!-- <li><a href="./blog.html">Blog</a></li> -->
                     </ul>
                 </nav>
                 <div class="">
@@ -82,361 +150,274 @@
     </header>
     <!-- ------------------------- -->
     <main>
-        <!-- ------------------------- -->
-        <section id="sectionOne" class="bg-[url('../images/Group6.png')] bg-cover xl:pt-20 xl:pb-32">
-            <div class="flex flex-col gap-5 container px-3">
-                <p class="text-white xl:text-xl">Having trouble with;</p>
-                <h2 class="text-white text-3xl xl:text-5xl xl:leading-snug font-bold">Building JS<br>
-                   constructors?</h2>
-                <p class="text-teal-400 xl:text-xl">Good thing, we’ve have an tutorial for that.</p>
+         <!-- ------------------------- -->
+         <section id="sectionOne" class="text-center pt-16 pb-16">
+            <div class="container">
+                <h2 class="font-semibold text-2xl xl:text-4xl mt-2">Latest news
+                <br><span class="text-sky-500">Updates</span></h2>
+                <p class="mt-2 xl:text-xl pt-7 w-4/5 md:w-2/5 m-auto text-gray-500">Lorem Ipsum is simply dummy text of the printing</p>
             </div>
         </section>
         <!-- ------------------------- -->
-        <section id="sectionTwo" class="">
-            <!-- ------------------------- -->
-            <div id="t1slide" class="swiper mySwiper -mt-16">
-                <div class="swiper-wrapper">
-                    <!-- ------------------------- -->
-                    <div class="swiper-slide">
-                <!-- ------------------------- -->
-                    <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
-                        <!-- ------------------------- -->
-                        <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
-                            <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
-                        </div>
-                        <!-- ------------------------- -->
-                        <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1">
-                            <div id="categor" class="text-teal-400">Intermediate</div>
-                            <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
-                            <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
-                                <div id="iconCat" class="flex">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                        <rect width="16" height="16" fill="url(#pattern0)"/>
-                                        <defs>
-                                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                        <use xlink:href="#image0_1_1324" transform="scale(0.005)"/>
-                                        </pattern>
-                                        <image id="image0_1_1324" width="200" height="200" xlink:href="data:image/png;base64,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"/>
-                                        </defs>
-                                        </svg>
-                                    <p>Vanilla JS</p>                        
-                                </div>
-                                <div id="textCat" class="flex gap-3"> <p><span class="text-teal-400 font-thin text-sm mr-2">clock</span>42 Minutes</p> <p><span class="text-teal-400 font-thin text-sm mr-2">tasks</span>3 Parts</p> </div>
-                                <div class="bg-teal-400 xl:w-fit text-center text-white text-base px-4 py-2 rounded-xl shadow-md shadow-teal-400"><a href="">Start Watching Now</a></div>
-                            </div>
-                    </div>
-                    </div>
-                <!-- ------------------------- -->
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- ------------------------- -->
-                            <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
-                                <!-- ------------------------- -->
-                                <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
-                                    <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
-                                </div>
-                                <!-- ------------------------- -->
-                                <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1">
-                                    <div id="categor" class="text-teal-400">Intermediate</div>
-                                    <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
-                                    <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
-                                        <div id="iconCat" class="flex">
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <rect width="16" height="16" fill="url(#pattern0)"/>
-                                                <defs>
-                                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                                <use xlink:href="#image0_1_1324" transform="scale(0.005)"/>
-                                                </pattern>
-                                                <image id="image0_1_1324" width="200" height="200" xlink:href="data:image/png;base64,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"/>
-                                                </defs>
-                                                </svg>
-                                            <p>Vanilla JS</p>                        
-                                        </div>
-                                        <div id="textCat" class="flex gap-3"> <p><span class="text-teal-400 font-thin text-sm mr-2">clock</span>42 Minutes</p> <p><span class="text-teal-400 font-thin text-sm mr-2">tasks</span>3 Parts</p> </div>
-                                        <div class="bg-teal-400 xl:w-fit text-center text-white text-base px-4 py-2 rounded-xl shadow-md shadow-teal-400"><a href="">Start Watching Now</a></div>
-                                    </div>
-                            </div>
-                            </div>
-                        <!-- ------------------------- -->
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- ------------------------- -->
-                            <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
-                                <!-- ------------------------- -->
-                                <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
-                                    <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
-                                </div>
-                                <!-- ------------------------- -->
-                                <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1">
-                                    <div id="categor" class="text-teal-400">Intermediate</div>
-                                    <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
-                                    <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
-                                        <div id="iconCat" class="flex">
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <rect width="16" height="16" fill="url(#pattern0)"/>
-                                                <defs>
-                                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                                <use xlink:href="#image0_1_1324" transform="scale(0.005)"/>
-                                                </pattern>
-                                                <image id="image0_1_1324" width="200" height="200" xlink:href="data:image/png;base64,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"/>
-                                                </defs>
-                                                </svg>
-                                            <p>Vanilla JS</p>                        
-                                        </div>
-                                        <div id="textCat" class="flex gap-3"> <p><span class="text-teal-400 font-thin text-sm mr-2">clock</span>42 Minutes</p> <p><span class="text-teal-400 font-thin text-sm mr-2">tasks</span>3 Parts</p> </div>
-                                        <div class="bg-teal-400 xl:w-fit text-center text-white text-base px-4 py-2 rounded-xl shadow-md shadow-teal-400"><a href="">Start Watching Now</a></div>
-                                    </div>
-                            </div>
-                            </div>
-                        <!-- ------------------------- -->
-                    </div>
-                    <div class="swiper-slide">
-                            <!-- ------------------------- -->
-                                <div id="boxCont" class="bg-white xl:grid xl:grid-cols-7 shadow-md p-6 rounded-2xl w-[900px]">
-                                    <!-- ------------------------- -->
-                                    <div id="boxImg" class="xl:col-span-3 xl:order-2 h-full">
-                                        <img src="./assets/images/Group28.png" class="w-full md\:max-h-32" alt="">
-                                    </div>
-                                    <!-- ------------------------- -->
-                                    <div id="boxText" class="xl:col-span-4 flex flex-col justify-between gap-1">
-                                        <div id="categor" class="text-teal-400">Intermediate</div>
-                                        <div id="title" class="text-xl font-semibold xl:text-2xl">Switch from MongoDB to GraphQL</div>
-                                        <div id="allCat" class="flex flex-col justify-between text-sm  gap-3 font-semibold">
-                                            <div id="iconCat" class="flex">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <rect width="16" height="16" fill="url(#pattern0)"/>
-                                                    <defs>
-                                                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                                    <use xlink:href="#image0_1_1324" transform="scale(0.005)"/>
-                                                    </pattern>
-                                                    <image id="image0_1_1324" width="200" height="200" xlink:href="data:image/png;base64,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"/>
-                                                    </defs>
-                                                    </svg>
-                                                <p>Vanilla JS</p>                        
-                                            </div>
-                                            <div id="textCat" class="flex gap-3"> <p><span class="text-teal-400 font-thin text-sm mr-2">clock</span>42 Minutes</p> <p><span class="text-teal-400 font-thin text-sm mr-2">tasks</span>3 Parts</p> </div>
-                                            <div class="bg-teal-400 xl:w-fit text-center text-white text-base px-4 py-2 rounded-xl shadow-md shadow-teal-400"><a href="">Start Watching Now</a></div>
-                                        </div>
-                                </div>
-                                </div>
-                            <!-- ------------------------- -->
-                    </div>
-
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
+        <section id="sectionTwo" class="my-5">
+            <div class=" container">
               <!-- ------------------------- -->
-              <!-- <script>
-                var swiper = new Swiper(".mySwiper", {
-                  slidesPerView: "auto",
-                  spaceBetween: 0,
-                  grabCursor: true,
-                  pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                  },
-                });
-              </script> -->
-              <script>
-                var swiper = new Swiper('#t1slide', {
-                  slidesPerView: 2.5,
-                  spaceBetween: 30,
-                  direction: getDirection(),
-                  navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                  },
-                  on: {
-                    resize: function () {
-                      swiper.changeDirection(getDirection());
-                    },
-                  },
-                });
-          
-                function getDirection() {
-                  var windowWidth = window.innerWidth;
-                  var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-          
-                  return direction;
-                }
-              </script>
+                <div id="catgoryRow" class="mb-5 mt-5">
 
-        
-            <!-- ------------------------- -->
-        </section>
-        <!-- ------------------------- -->
-        <section id="sectionThree" class="my-5">
-            <div class="relative">
-                <img src="./assets/images/Vector 3.png" class="absolute left-0 -top-full" alt="">
-                <img src="./assets/images/Vector 3 (1).png" class="absolute right-0 top-52" alt="">
-            </div>
-            <div class=" container px-3">
-                <!-- ------------------------- -->
-                
-                <div id="Img" class="flex justify-center w-1/2 m-auto"><img src="./assets/images/Other09.png" alt=""></div>
-                <div id="catgoryRow" class="overflow-hidden overflow-x-scroll mb-5">
-                    <ul class="text-sky-500 flex flex-nowrap gap-5">
-                        <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
-                        <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
-                        <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
-                        <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
-                        <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                    <div id="search" class="flex justify-center pb-10 relative w-fit m-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute left-2 top-1 z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        <input type="text" name="" placeholder="Search" id="search" class="bg-gray-200 rounded-md pl-8 pr-3 py-1 focus:border-gray-400 ">
+                        
+                    </div>
+
+                    <ul class="text-sky-500 flex flex-nowrap gap-5 md:px-20 ">
+                        <div id="t5slide" class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <!-- ------------------------- -->
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <!-- ------------------------- -->
+                                    <li class="bg-sky-50 flex-none rounded-2xl py-2 px-5">Lorem ipsum</li>
+                                    <!-- ------------------------- -->
+                                </div>
+
+                                
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
                     </ul>
+                <!-- ------------------------- --> 
                 </div>
-                <div id="gridProduct" class="grid grid-cols-2 xl:grid-cols-3 xl:gap-7 gap-3 pb-10">
-                    <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
-                        <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+
+
+                <div id="firstPost" class="grid md:grid-cols-2 gap-5 my-5 md:my-16">
+                    <img src="./assets/images/Rectangle 19.png" class="rounded-3xl w-full" alt="">
+                    <div id="content">
+                        <div id="boxText" class="flex flex-col gap-3 md:justify-between px-16 h-full">
+                            <div id="title" class="leading-loose text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="leading-loose">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
-                   <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
-                        <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
-                            <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
-                                </div>
-                            </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
-                        </div>
-                    </div>
+                </div>
+
+
+                <div id="gridProduct" class="grid grid-cols-2 xl:grid-cols-3 xl:gap-16 gap-10 pb-10">
+
+
                     <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
+                    <div id="productBoxCont" class="rounded-3xl">
                         <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
+                    <div id="productBoxCont" class="rounded-3xl">
                         <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
+                    <div id="productBoxCont" class="rounded-3xl">
                         <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
+                    <div id="productBoxCont" class="rounded-3xl">
                         <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
+                    <div id="productBoxCont" class="rounded-3xl">
                         <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
+                    <div id="productBoxCont" class="rounded-3xl">
                         <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
                     <!-- ------------------------- -->
-                    <div id="productBoxCont" class="shadow-md p-3 xl:p-7 rounded-3xl">
+                    <div id="productBoxCont" class="rounded-3xl">
                         <!-- ------------------------- -->
-                        <div id="boxText" class="flex flex-col gap-1">
-                            <div id="categor" class="text-teal-400 xl:font-bold">Digital art</div>
-                            <img src="./assets/images/Group 21.png" class="w-full md\:max-h-32" alt="">
-                            <div id="title" class="text-xl font-medium xl:text-3xl">Circle Black</div>
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
                             <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
-                                <div id="textCat" class="flex-col font-thin"> 
-                                    <p><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Date</span>24/1/2022</p> 
-                                    <p class="mt-1"><span class="text-teal-400 font-thin text-sm mr-2 xl:text-lg">Employer</span>Nasa</p>
-                                    <p class="mt-1 xl:font-semibold">D-VICE TEAM</p>
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
                                 </div>
                             </div>
-                            <div class="bg-sky-500 text-center text-white text-base px-4 py-2 rounded-xl mt-4 shadow-md shadow-sky-400"><a href="">View</a></div>
                         </div>
                     </div>
+                    <!-- ------------------------- -->
+                    <div id="productBoxCont" class="rounded-3xl">
+                        <!-- ------------------------- -->
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
+                            <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ------------------------- -->
+                    <div id="productBoxCont" class="rounded-3xl">
+                        <!-- ------------------------- -->
+                        <div id="boxText" class="flex flex-col gap-3">
+                            <img src="./assets/images/Rectangle 20 (1).png" class="w-full md\:max-h-32" alt="">
+                            <div id="title" class="text-xl font-semibold xl:text-3xl">Lorem Ipsum is simply dummy text of the printing.</div>
+                            <p class="hidden md:block">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the .
+                            </p>
+                            <div id="allCat" class="flex text-sm  gap-3 font-semibold xl:text-lg">
+                                <img src="./assets/images/Ellipse 7.png" alt="">
+                                <div>
+                                    <div id="auther"><a href="">Name here</a></div>
+                                    <span class="text-sm font-thin" >20.12.2020</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
                     
                 </div>
             </div>
@@ -449,11 +430,11 @@
         <!-- ------------------------- -->
         <section id="sectionSix" class="bg-sky-100 pb-20">
             <!-- ------------------------- -->
-            <div id="container" class="container px-3">
+            <div id="container" class="container">
                 <!-- ------------------------- -->
-                <img src="./assets/images/star.png" class="-mt-10 ml-16" alt="">
+                <img src="./assets/images/star.png" class="md:-mt-10 md:ml-16" alt="">
                 <!-- ------------------------- -->
-                <div class="w-6/12 m-auto">
+                <div class="md:w-6/12 m-auto">
                     <h4 class="text-lg font-semibold text-center xl:text-3xl w-4/6 m-auto">Lorem Ipsum is simply dummy text of the printing. </h4> 
                     <!-- ------------------------- -->
                     <div id="input" class="text-center grid grid-cols-6 gap-2 mt-5">
@@ -464,7 +445,7 @@
             </div>
         </section>
         <!-- ------------------------- -->
-        <section class="container grid grid-cols-4 gap-24 py-32">
+        <section class="container grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-24 py-10 md:py-32">
             <div id="colOne" class="flex flex-col gap-5">
                 <img src="./assets/images/logo_black_2_.png" class="w-fit" alt="">
                 <p>
@@ -488,7 +469,7 @@
                 </p>
                 <p>+908 89097 890</p>
             </div>
-            <div id="colFour" class="flex items-end">
+            <div id="colFour" class="flex items-end justify-center">
                 <div class="grid grid-cols-4">
                     <img src="./assets/images/facebook 1.png" class="p-4 shadow-xl rounded-full" alt="">
                     <img src="./assets/images/instagram 1.png" class="p-4 shadow-xl rounded-full" alt="">
@@ -498,5 +479,62 @@
             </div>
         </section>
     </footer>
+    <script src="./assets/js/swiper-bundle.min.js" ></script>
+    <script>
+        var swiper = new Swiper('#t1slide', {
+          slidesPerView: 1,
+          spaceBetween: 30,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 30,
+                    },
+                    1280: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 30,
+                    },
+                    },
+        
+        });
+  
+        function getDirection() {
+          var windowWidth = window.innerWidth;
+          var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+  
+          return direction;
+        }
+      </script>
+      <script>
+        var swiper = new Swiper('#t5slide', {
+            slidesPerView: 2,
+          spaceBetween: 30,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 5,
+                spaceBetween: 20,
+            },
+            },
+        });
+    </script>
 </body>
 </html>
